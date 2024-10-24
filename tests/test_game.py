@@ -16,9 +16,6 @@ class TestGame:
             for letter in grid:
                 assert letter in string.ascii_uppercase
 
-            # teardown
-            pass
-
     def test_empty_word_is_invalid(self):
             # setup
             new_game = Game()
@@ -36,3 +33,9 @@ class TestGame:
             assert new_game.is_valid(test_word) is True
             # teardown
             assert new_game.grid == list(test_grid) # Make sure the grid remained untouched
+
+    def test_unknown_word_is_invalid(self):
+            """A word that is not in the English dictionary should not be valid"""
+            new_game = Game()
+            new_game.grid = list('KWIENFUQW') # Force the grid to a test case:
+            assert new_game.is_valid('FEUN') is False
